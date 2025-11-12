@@ -744,6 +744,7 @@ function togglePasswordVisibility() {
 function iniciarApp() {
     document.getElementById("loginScreen").style.display = "none";
     document.getElementById("mainScreen").style.display = "block";
+    document.getElementById("horasNecessarias").textContent = horasNecessarias;
     document.getElementById("userName").textContent =
         currentUser.nomeCompleto || currentUser.username || currentUser;
 
@@ -1328,7 +1329,6 @@ function atualizarTabela() { // Função para atualizar a tabela de exibição d
         } else {
             document.getElementById("totalHorasRegistradas").textContent = totalHorasRegistradas;
             document.getElementById("totalHorasValidadas").textContent = totalHorasValidadas;
-            document.getElementById("horasNecessarias").textContet = horasNecessarias;
         }
     };
 
@@ -3643,4 +3643,5 @@ function mostrarMensagemDoSistema(message, type) {
         messageContainer.remove();
     }, 5000);
 }
+
 
