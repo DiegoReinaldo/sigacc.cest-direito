@@ -1,336 +1,137 @@
 // Constantes e configurações
-const horasNecessarias = 225;
-const cursoDeGraduacao = 'Engenharia de Produção Bacharelado UEMA, Campus São Luis';
+const horasNecessarias = 200;
+const cursoDeGraduacao = 'Direito Bacharelado CEST';
 
 const gruposAtividades = [ // Lista com os grupos temático dos tipos de atividades 
-    'GRUPO I - Atividades de iniciação à pesquisa ou ensino ou atividades de extensão em áreas correlatas a Engenharia de Produção',
-    'GRUPO II - Produção Técnica e/ou Científica em áreas correlatas',
-    'GRUPO III - Atividades de participação e/ou organização de eventos em áreas correlatas',
-    'GRUPO IV - Vivências de gestão',
-    'GRUPO V - Experiências ligadas à formação profissional e/ou correlatas',
-    'GRUPO VI - Outras atividades'
+    'GRUPO I - ENSINO',
+    'GRUPO II - PESQUISA',
+    'GRUPO III - EXTENSÃO',
+    'GRUPO IV - OUTROS'
 ]
 
 const maxHorasGruposAtividades = { // Traz limitações por grupo, caso haja. Caso não haja limitação por grupo, a instância number Infinity defini essa não limitação
-    'GRUPO I - Atividades de iniciação à pesquisa ou ensino ou atividades de extensão em áreas correlatas a Engenharia de Produção': Infinity,
-    'GRUPO II - Produção Técnica e/ou Científica em áreas correlatas': Infinity,
-    'GRUPO III - Atividades de participação e/ou organização de eventos em áreas correlatas': Infinity,
-    'GRUPO IV - Vivências de gestão': Infinity,
-    'GRUPO V - Experiências ligadas à formação profissional e/ou correlatas': Infinity,
-    'GRUPO VI - Outras atividades': Infinity
+    'GRUPO I - ENSINO': Infinity,
+    'GRUPO II - PESQUISA': Infinity,
+    'GRUPO III - EXTENSÃO': Infinity,
+    'GRUPO IV - OUTROS': Infinity,
 }
 
 const AtividadesPorGrupo = { // Lista de Atividades por Grupos temáticos 
-    'GRUPO I - Atividades de iniciação à pesquisa ou ensino ou atividades de extensão em áreas correlatas a Engenharia de Produção': [
-        'Bolsista em projeto de pesquisa',
-        'Voluntário em projeto de pesquisa',
-        'Bolsista em projeto de extensão',
-        'Voluntário em projeto de extensão',
-        'Bolsista em monitoria',
-        'Monitoria voluntária',
-        'Disciplinas cursadas com aprovação',
-        'Participação em projetos especiais e atléticas desportivas'
+    'GRUPO I - ENSINO': [
+        'Monitoria no Curso',
+        'Palestras, seminários, fóruns, encontros, jornadas, cursos, minicursos, oficinas, congressos, visitas técnicas, conferências, oficinas pedagógicas, workshops, simpósios, mesas redondas e outros eventos na área do curso ou áreas afins',
+        'Disciplinas extracurriculares, na área do curso, oferecidas pelo CEST',
+        'Disciplinas extracurriculares em outros cursos do CEST ou de outras IES, na área do curso ou áreas afins',
     ],
 
-    'GRUPO II - Produção Técnica e/ou Científica em áreas correlatas': [
-        'Publicação de artigo em revista Qualis A1, A2, B1, B2 e B3',
-        'Publicação de artigo em revista Qualis B4, B5 e C',
-        'Publicação de artigo completo em congresso internacional (autor principal)',
-        'Publicação de artigo completo em congresso internacional (co-autoria)',
-        'Publicação de artigo completo em congresso nacional',
-        'Depósito de pedido de Patente'
+    'GRUPO II - PESQUISA': [
+        'Projetos de Pesquisa ou Programa de Iniciação Científica, orientados por docentes do CEST',
+        'Assistir defesas de monografias, de dissertações de mestrado ou teses de doutorado, na área do curso ou áreas afins',
+        'Publicação de Artigos em Revistas Científica',
+        'Publicação de Resumos Científicos em Anais',
+        'Apresentação de Trabalhos Científicos',
     ],
 
-    'GRUPO III - Atividades de participação e/ou organização de eventos em áreas correlatas': [
-        'Participação em congressos internacionais',
-        'Participação em congressos nacionais/Regionais',
-        'Apresentação de artigo em congresso internacional',
-        'Apresentação de artigo em congresso nacional',
-        'Apresentação de trabalhos em seminários, encontros, jornadas, colóquios, workshops locais',
-        'Participação como ouvinte em palestras, congressos, seminários, conferências, encontros, workshops',
-        'Participação em audiências de defesas de monografias, dissertações e teses',
-        'Organização de eventos: seminários, congressos, encontros, jornadas e colóquios'
+    'GRUPO III - EXTENSÃO': [
+        'Projetos ou atividades de extensão não curricularizada, sob orientação de Professor do CEST',
+        'Programa de Mobilidade Nacional e/ou Internacional (mínimo de 1 mês)',
+        'Ações Sociais ou Ligas Acadêmicas na área do curso ou áreas afins',
     ],
 
-    'GRUPO IV - Vivências de gestão': [
-        'Participação na composição de empresa júnior do Curso',
-        'Participação na diretoria do centro Acadêmico do Curso',
-        'Participação na condição de representante estudantil no colegiado de curso, assembleia departamental ou conselho de centro'
+    'GRUPO IV - OUTROS': [
+        'Participação em atividades extracurriculares de assistência ou assessoria, na área do curso',
+        'Participação em órgãos colegiados, inclusive de representação estudantil no CEST ou em outras atividades regulamentadas, como voluntária ao TRE'
     ],
-
-    'GRUPO V - Experiências ligadas à formação profissional e/ou correlatas': [
-        'Treinamento como participante',
-        'Treinamento como ministrante',
-        'Participação em CREA Jr e ABEPRO-JUNIOR',
-        'Consultoria',
-        'Estágio Não-Curricular'
-    ],
-
-    'GRUPO VI - Outras atividades': [
-        'Participação em gincanas ou torneios de conhecimento',
-        'Participação em atividades de voluntariado, campanhas beneficentes e beneméritas',
-        'Visitas técnicas realizadas em atividades referentes ao Curso',
-        'Participação em atividades desportivas representando o Curso de Engenharia de Produção ou a UEMA',
-        'Participação em Cursos (áreas da ABEPRO)',
-        'Participação de cursos via plataforma Eskada',
-        'Facilitador de Cursos (ministrante)',
-        'Curso de língua Estrangeira',
-        'Intercâmbio',
-        'Participação em startups ou incubadoras',
-        'Registro de Software'
-    ]
 };
 
-const opcoesAtividades = [ // Lista de atividades
-    'Bolsista em projeto de pesquisa',
-    'Voluntário em projeto de pesquisa',
-    'Bolsista em projeto de extensão',
-    'Voluntário em projeto de extensão',
-    'Bolsista em monitoria',
-    'Monitoria voluntária',
-    'Disciplinas cursadas com aprovação',
-    'Participação em projetos especiais e atléticas desportivas',
-    'Publicação de artigo em revista Qualis A1, A2, B1, B2 e B3',
-    'Publicação de artigo em revista Qualis B4, B5 e C',
-    'Publicação de artigo completo em congresso internacional (autor principal)',
-    'Publicação de artigo completo em congresso internacional (co-autoria)',
-    'Publicação de artigo completo em congresso nacional',
-    'Depósito de pedido de Patente',
-    'Participação em congressos internacionais',
-    'Participação em congressos nacionais/Regionais',
-    'Apresentação de artigo em congresso internacional',
-    'Apresentação de artigo em congresso nacional',
-    'Apresentação de trabalhos em seminários, encontros, jornadas, colóquios, workshops locais',
-    'Participação como ouvinte em palestras, congressos, seminários, conferências, encontros, workshops',
-    'Participação em audiências de defesas de monografias, dissertações e teses',
-    'Organização de eventos: seminários, congressos, encontros, jornadas e colóquios',
-    'Participação na composição de empresa júnior do Curso',
-    'Participação na diretoria do centro Acadêmico do Curso',
-    'Participação na condição de representante estudantil no colegiado de curso, assembleia departamental ou conselho de centro',
-    'Treinamento como participante',
-    'Treinamento como ministrante',
-    'Participação em CREA Jr e ABEPRO-JUNIOR',
-    'Consultoria',
-    'Estágio Não-Curricular',
-    'Participação em gincanas ou torneios de conhecimento',
-    'Participação em atividades de voluntariado, campanhas beneficentes e beneméritas',
-    'Visitas técnicas realizadas em atividades referentes ao Curso',
-    'Participação em atividades desportivas representando o Curso de Engenharia de Produção ou a UEMA',
-    'Participação em Cursos (áreas da ABEPRO)',
-    'Participação de cursos via plataforma Eskada',
-    'Facilitador de Cursos (ministrante)',
-    'Curso de língua Estrangeira',
-    'Intercâmbio',
-    'Participação em startups ou incubadoras',
-    'Registro de Software'
+const opcoesAtividades = [ // Lista de atividades    
+    'Monitoria no Curso',
+    'Palestras, seminários, fóruns, encontros, jornadas, cursos, minicursos, oficinas, congressos, visitas técnicas, conferências, oficinas pedagógicas, workshops, simpósios, mesas redondas e outros eventos na área do curso ou áreas afins',
+    'Disciplinas extracurriculares, na área do curso, oferecidas pelo CEST',
+    'Disciplinas extracurriculares em outros cursos do CEST ou de outras IES, na área do curso ou áreas afins',
+    'Projetos de Pesquisa ou Programa de Iniciação Científica, orientados por docentes do CEST',
+    'Assistir defesas de monografias, de dissertações de mestrado ou teses de doutorado, na área do curso ou áreas afins',
+    'Publicação de Artigos em Revistas Científica',
+    'Publicação de Resumos Científicos em Anais',
+    'Apresentação de Trabalhos Científicos',
+    'Projetos ou atividades de extensão não curricularizada, sob orientação de Professor do CEST',
+    'Programa de Mobilidade Nacional e/ou Internacional (mínimo de 1 mês)',
+    'Ações Sociais ou Ligas Acadêmicas na área do curso ou áreas afins',
+    'Participação em atividades extracurriculares de assistência ou assessoria, na área do curso',
+    'Participação em órgãos colegiados, inclusive de representação estudantil no CEST ou em outras atividades regulamentadas, como voluntária ao TRE'
 ];
 
 const configAtividades = { // Traz todas as configurações necessárias para o cadastro de uma atividade e o calculo das horas validadas
-    'Bolsista em projeto de pesquisa': {
-        maxHorasValidadas: 20,
-        maxHoras: 80,
-        restricao: 'periodo'
-    },
-    'Voluntário em projeto de pesquisa': {
-        maxHorasValidadas: 20,
-        maxHoras: 80,
-        restricao: 'periodo'
-    },
-    'Bolsista em projeto de extensão': {
-        maxHorasValidadas: 20,
-        maxHoras: 80,
-        restricao: 'periodo'
-    },
-    'Voluntário em projeto de extensão': {
-        maxHorasValidadas: 20,
-        maxHoras: 80,
-        restricao: 'periodo'
-    },
-    'Bolsista em monitoria': {
-        maxHorasValidadas: 20,
-        maxHoras: 80,
-        restricao: 'periodo'
-    },
-    'Monitoria voluntária': {
-        maxHorasValidadas: 20,
-        maxHoras: 80,
-        restricao: 'periodo'
-    },
-    'Disciplinas cursadas com aprovação': {
-        maxHorasValidadas: 60,
-        maxHoras: 90,
-        restricao: 'registro'
-    },
-    'Participação em projetos especiais e atléticas desportivas': {
-        maxHorasValidadas: 30,
-        maxHoras: 90,
-        restricao: 'periodo'
-    },
-    'Publicação de artigo em revista Qualis A1, A2, B1, B2 e B3': {
-        maxHorasValidadas: 90,
-        maxHoras: 180,
-        restricao: 'registro'
-    },
-    'Publicação de artigo em revista Qualis B4, B5 e C': {
-        maxHorasValidadas: 60,
-        maxHoras: 120,
-        restricao: 'registro'
-    },
-    'Publicação de artigo completo em congresso internacional (autor principal)': {
-        maxHorasValidadas: 30,
-        maxHoras: 60,
-        restricao: 'registro'
-    },
-    'Publicação de artigo completo em congresso internacional (co-autoria)': {
+    'Monitoria no Curso': {
         maxHorasValidadas: 15,
-        maxHoras: 60,
-        restricao: 'registro'
-    },
-    'Publicação de artigo completo em congresso nacional': {
-        maxHorasValidadas: 20,
-        maxHoras: 60,
-        restricao: 'registro'
-    },
-    'Depósito de pedido de Patente': {
-        maxHorasValidadas: 120,
-        maxHoras: 120,
-        restricao: 'registro'
-    },
-    'Participação em congressos internacionais': {
-        maxHorasValidadas: 20,
-        maxHoras: 60,
-        restricao: 'registro'
-    },
-    'Participação em congressos nacionais/Regionais': {
-        maxHorasValidadas: 10,
-        maxHoras: 60,
-        restricao: 'registro'
-    },
-    'Apresentação de artigo em congresso internacional': {
-        maxHorasValidadas: 30,
-        maxHoras: 60,
-        restricao: 'registro'
-    },
-    'Apresentação de artigo em congresso nacional': {
-        maxHorasValidadas: 20,
-        maxHoras: 60,
-        restricao: 'registro'
-    },
-    'Apresentação de trabalhos em seminários, encontros, jornadas, colóquios, workshops locais': {
-        maxHorasValidadas: 15,
-        maxHoras: 60,
-        restricao: 'registro'
-    },
-    'Participação como ouvinte em palestras, congressos, seminários, conferências, encontros, workshops': {
-        maxHorasValidadas: 7.5,
-        maxHoras: 60,
-        restricao: 'registro'
-    },
-    'Participação em audiências de defesas de monografias, dissertações e teses': {
-        maxHorasValidadas: 5,
-        maxHoras: 15,
-        restricao: 'registro'
-    },
-    'Organização de eventos: seminários, congressos, encontros, jornadas e colóquios': {
-        maxHorasValidadas: 20,
-        maxHoras: 60,
-        restricao: 'registro'
-    },
-    'Participação na composição de empresa júnior do Curso': {
-        maxHorasValidadas: 30,
-        maxHoras: 120,
+        maxHoras: 30,
         restricao: 'periodo'
     },
-    'Participação na diretoria do centro Acadêmico do Curso': {
-        maxHorasValidadas: 30,
-        maxHoras: 120,
-        restricao: 'periodo'
-    },
-    'Participação na condição de representante estudantil no colegiado de curso, assembleia departamental ou conselho de centro': {
-        maxHorasValidadas: 5,
-        maxHoras: 30,
-        restricao: 'registro'
-    },
-    'Treinamento como participante': {
-        maxHorasValidadas: 5,
-        maxHoras: 30,
-        restricao: 'registro'
-    },
-    'Treinamento como ministrante': {
-        maxHorasValidadas: 10,
-        maxHoras: 30,
-        restricao: 'registro'
-    },
-    'Participação em CREA Jr e ABEPRO-JUNIOR': {
-        maxHorasValidadas: 30,
-        maxHoras: 60,
-        restricao: 'periodo'
-    },
-    'Consultoria': {
+    'Palestras, seminários, fóruns, encontros, jornadas, cursos, minicursos, oficinas, congressos, visitas técnicas, conferências, oficinas pedagógicas, workshops, simpósios, mesas redondas e outros eventos na área do curso ou áreas afins': {
         maxHorasValidadas: 15,
         maxHoras: 30,
         restricao: 'registro'
     },
-    'Estágio Não-Curricular': {
-        maxHorasValidadas: 30,
-        maxHoras: 60,
-        restricao: 'periodo'
-    },
-    'Participação em gincanas ou torneios de conhecimento': {
-        maxHorasValidadas: 5,
-        maxHoras: 15,
-        restricao: 'registro'
-    },
-    'Participação em atividades de voluntariado, campanhas beneficentes e beneméritas': {
-        maxHorasValidadas: 5,
-        maxHoras: 30,
-        restricao: 'registro'
-    },
-    'Visitas técnicas realizadas em atividades referentes ao Curso': {
-        maxHorasValidadas: 5,
-        maxHoras: 30,
-        restricao: 'registro'
-    },
-    'Participação em atividades desportivas representando o Curso de Engenharia de Produção ou a UEMA': {
-        maxHorasValidadas: 5,
-        maxHoras: 30,
-        restricao: 'registro'
-    },
-    'Participação em Cursos (áreas da ABEPRO)': {
-        maxHorasValidadas: 10,
+    'Disciplinas extracurriculares, na área do curso, oferecidas pelo CEST': {
+        maxHorasValidadas: 40,
         maxHoras: 40,
         restricao: 'registro'
     },
-    'Participação de cursos via plataforma Eskada': {
-        maxHorasValidadas: 10,
-        maxHoras: 50,
+    'Disciplinas extracurriculares em outros cursos do CEST ou de outras IES, na área do curso ou áreas afins': {
+        maxHorasValidadas: 40,
+        maxHoras: 40,
         restricao: 'registro'
     },
-    'Facilitador de Cursos (ministrante)': {
-        maxHorasValidadas: 15,
-        maxHoras: 60,
-        restricao: 'registro'
-    },
-    'Curso de língua Estrangeira': {
-        maxHorasValidadas: 15,
-        maxHoras: 30,
-        restricao: 'periodo'
-    },
-    'Intercâmbio': {
-        maxHorasValidadas: 15,
-        maxHoras: 30,
-        restricao: 'registro'
-    },
-    'Participação em startups ou incubadoras': {
+    'Projetos de Pesquisa ou Programa de Iniciação Científica, orientados por docentes do CEST': {
         maxHorasValidadas: 20,
         maxHoras: 40,
         restricao: 'registro'
     },
-    'Registro de Software': {
-        maxHorasValidadas: 60,
-        maxHoras: 120,
+    'Assistir defesas de monografias, de dissertações de mestrado ou teses de doutorado, na área do curso ou áreas afins': {
+        maxHorasValidadas: 2,
+        maxHoras: 10,
         restricao: 'registro'
-    }
+    },
+    'Publicação de Artigos em Revistas Científica': {
+        maxHorasValidadas: 20,
+        maxHoras: 40,
+        restricao: 'registro'
+    },
+    'Publicação de Resumos Científicos em Anais': {
+        maxHorasValidadas: 10,
+        maxHoras: 20,
+        restricao: 'registro'
+    },
+    'Apresentação de Trabalhos Científicos': {
+        maxHorasValidadas: 5,
+        maxHoras: 15,
+        restricao: 'registro'
+    },
+    'Projetos ou atividades de extensão não curricularizada, sob orientação de Professor do CEST': {
+        maxHorasValidadas: 15,
+        maxHoras: 30,
+        restricao: 'periodo'
+    },
+    'Programa de Mobilidade Nacional e/ou Internacional (mínimo de 1 mês)': {
+        maxHorasValidadas: 40,
+        maxHoras: 40,
+        restricao: 'registro'
+    },
+    'Ações Sociais ou Ligas Acadêmicas na área do curso ou áreas afins': {
+        maxHorasValidadas: 10,
+        maxHoras: 20,
+        restricao: 'período'
+    },
+    'Participação em atividades extracurriculares de assistência ou assessoria, na área do curso': {
+        maxHorasValidadas: 10,
+        maxHoras: 30,
+        restricao: 'registro'
+    },
+    'Participação em órgãos colegiados, inclusive de representação estudantil no CEST ou em outras atividades regulamentadas, como voluntária ao TRE': {
+        maxHorasValidadas: 10,
+        maxHoras: 30,
+        restricao: 'registro'
+    },
 };
 
 // Estado da aplicação
@@ -344,7 +145,7 @@ let isDev = false;
 let horasChart = null;
 
 // Inicialização do IndexedDB
-const request = indexedDB.open("SIGACC_DB", 15);
+const request = indexedDB.open("SIGACC_direito-CEST_DB", 15);
 
 request.onupgradeneeded = function (event) {
     db = event.target.result;
@@ -1008,7 +809,7 @@ function logout() {
 }
 
 function mostrarSobre() {
-    alert("SIGACC - Sistema Integrado de Gestão de Atividades Complementares Curriculares - Versão 1.0\n\nDesenvolvido por Diego Bezerra Reinaldo para auxiliar os estudantes do curso de Engenharia de Produção da UEMA no gerenciamento de atividades complementares.\n\nPara esclarecimentos de dúvidas ou recuperação de login e senhas, entrar em contato com os através dos contatos:\n\nEmail: diego.dbr811@gmail.com\nInstagram: @eaidih\nCentro de Ciências Tecnológicas - CCT/UEMA, Cidade Universitária Paulo VI.");
+    alert("SIGACC - Sistema de Gestão de Atividades Complementares Curriculares \n\nDesenvolvido por Diego Bezerra Reinaldo para auxiliar os estudantes no gerenciamento de atividades complementares.\n\nPara esclarecimentos de dúvidas ou recuperação de login e senhas, entrar em contato com os através dos contatos:\n\nEmail: diego.dbr811@gmail.com\nInstagram: @eaidih\nCentro de Ciências Tecnológicas - CCT/UEMA, Cidade Universitária Paulo VI.");
 }
 
 // Funções das Abas e Telas Usuário
@@ -1527,6 +1328,7 @@ function atualizarTabela() { // Função para atualizar a tabela de exibição d
         } else {
             document.getElementById("totalHorasRegistradas").textContent = totalHorasRegistradas;
             document.getElementById("totalHorasValidadas").textContent = totalHorasValidadas;
+            document.getElementById("horasNecessarias").textContet = horasNecessarias;
         }
     };
 
@@ -3003,38 +2805,51 @@ async function criarRelatorioCompletoABNT() {
         });
     });
 
-    // ---------- CONFIGURAÇÕES ----------
-    const instituicao = "UNIVERSIDADE ESTADUAL DO MARANHÃO";
-    const centro = "CENTRO DE CIÊNCIAS TECNOLÓGICAS";
-    const curso = "CURSO DE GRADUAÇÃO EM ENGENHARIA DE PRODUÇÃO";
+    // ---------- CONFIGURAÇÕES (adaptado para CEST - Resolução nº 037/2024) ----------
+    const resolucaoRef = "Resolução nº 037/2024 - CEPE";
+    const instituicao = "CENTRO UNIVERSITÁRIO SANTA TEREZINHA - CEST";
+    const curso = "CURSO DE GRADUAÇÃO DIREITO BACHARELADO";
     const nomeAluno = estudante.nomeCompleto || estudante.username;
     const matriculaAluno = estudante.matricula || "-----";
-    const tituloRelatorio = "Relatório de Atividades Complementares";
-
-    const descricaoAprovacao = "Relatório de Atividades Complementares apresentado na Universidade Estadual do Maranhão, em cumprimento às exigências da disciplina de Atividades Complementares, do Curso Bacharelado em Engenharia de Produção, com o objetivo de comprovar o cumprimento da carga horária determinada de 225h.";
-
-    const introducao_p1 = "De acordo com o disposto no Regulamento das Atividades Complementares do Curso de Engenharia de Produção da Universidade Estadual do Maranhão – 3ª atualização, é obrigatório ao discente do curso o cumprimento de 225 (duzentas e vinte e cinco) horas de Atividades Complementares (ACs). Este requisito, essencial para a obtenção do grau de Bacharel em Engenharia de Produção, está em consonância com as Resoluções CNE No. 02, de 24 de abril de 2019, e CONSUN/UEMA No. 1.369/2019, de 21 de março de 2019.";
-
-    const introducao_p2 = "Conforme estabelecido no Art. 1º do referido regulamento, as Atividades Complementares visam proporcionar flexibilização curricular e o desenvolvimento da autonomia do discente, incentivando sua participação em atividades de caráter científico, acadêmico, cultural ou social que contribuam para o enriquecimento de sua formação profissional.";
-
-    const introducao_p3 = "Para a integralização desta carga horária, o Art. 5º determina que as 225 horas devem ser distribuídas em, no mínimo, 3 (três) dos 6 (seis) grupos de atividades descritos no Anexo A do regulamento, respeitando os limites máximos de pontuação por atividade e por grupo.";
-
-    const objetivo_p1 = "Com o intuito de cumprir este requisito obrigatório para a graduação, o presente relatório tem como objetivo detalhar e comprovar as atividades realizadas pelo discente " + nomeAluno + " ao longo de sua trajetória acadêmica.";
-
-    const objetivo_p2 = "Em atendimento ao Art. 1º, § 2º, este documento serve como base para o requerimento de avaliação das atividades perante a Diretoria do Curso, apresentando de forma organizada:";
-
-    const objetivo_itemA = "a) A relação das atividades realizadas, enquadradas nos grupos previstos no Anexo A.";
-    const objetivo_itemB = "b) A carga horária pleiteada para cada atividade.";
-    const objetivo_itemC = "c) Os documentos comprobatórios que atestam a realização das mesmas (em anexo).";
-
-    const metodologia_p1 = "As atividades desenvolvidas pelo discente foram catalogadas e classificadas conforme os grupos estabelecidos no Anexo A do regulamento. A seguir, é apresentada uma tabela-resumo que consolida todas as atividades realizadas, permitindo uma visão clara do atendimento aos critérios de distribuição e carga horária total.";
-
-    const metodologia_p2 = "O discente buscou cumprir a exigência de, no mínimo, três grupos distintos, assegurando uma formação complementar diversificada, tal como preconizam os objetivos das ACs.";
-
-    const orientador = "Prof. Dr. Wellinton de Assunção";
-    const cargoOrientador = "Docente da Disciplina de Atividades Complementares";
+    const tituloRelatorio = "Relatório de Atividades Complementares Independentes";
+    
+    const descricaoAprovacao = `Relatório de Atividades Complementares Independentes apresentado ao ${instituicao}, em atendimento à ${resolucaoRef} e às normas regulamentadoras das Atividades Complementares Independentes, com o objetivo de comprovar o cumprimento da carga horária determinada no Projeto Pedagógico do Curso (PPC): ${horasNecessarias}h.`;
+    
+    const introducao_p1 = `Em conformidade com a ${resolucaoRef}, o ${instituicao} adota normas atualizadas para o cumprimento das Atividades Complementares Independentes, vigentes a partir do 1º semestre de 2025. A carga horária total exigida está definida no Projeto Pedagógico do Curso (PPC) e é obrigatória para a integralização curricular.`;
+    
+    const introducao_p2 = `As Atividades Complementares Independentes têm por objetivo flexibilizar o percurso formativo, aprimorar competências profissionais e fomentar a participação dos discentes em atividades relativas ao ensino, à pesquisa, à extensão e outras consideradas relevantes para a formação.`;
+    
+    const introducao_p3 = `Conforme o Apêndice A da referida Resolução, a pontuação e os limites máximos para aproveitamento de cada atividade estão estabelecidos na tabela anexa. Observa-se a obrigatoriedade do cumprimento de atividades em, no mínimo, duas modalidades (ensino, pesquisa, extensão, outras), respeitados os limites de aproveitamento.`;
+    
+    // Objetivos
+    const objetivo_p1 = `O presente relatório tem por objetivo detalhar e comprovar as atividades realizadas pelo discente ${nomeAluno}, demonstrando o atendimento à carga horária prevista no PPC do curso.`;
+    
+    const objetivo_p2 = `Em atendimento ao disposto na Resolução e aos procedimentos do curso, este documento serve como base para o requerimento de análise e aproveitamento das horas junto à coordenação, apresentando de forma organizada:`;
+    
+    const objetivo_itemA = "a) A relação das atividades realizadas, enquadradas nas modalidades previstas;";
+    const objetivo_itemB = "b) A carga horária pleiteada para cada atividade;";
+    const objetivo_itemC = "c) Os documentos comprobatórios correspondentes (anexos), emitidos por instituições oficiais quando aplicável.";
+    
+    // Metodologia
+    const metodologia_p1 = `As atividades foram catalogadas e classificadas conforme a tabela de aproveitamento constante no Apêndice A da ${resolucaoRef}. Para cada atividade foi considerada a carga horária máxima passível de aproveitamento, conforme especificado no regulamento.`;
+    
+    const metodologia_p2 = `O discente organizou as evidências documentais e apresentou requerimento padrão disponível na Central de Relacionamento do CEST, respeitando o prazo estabelecido (até o final do penúltimo semestre do curso) para análise, aproveitamento e registro das Atividades Complementares Independentes.`;
+    
+    const observacoes_importantes = `Observações: 
+    - A carga horária exigida é a definida no PPC do curso. 
+    - Não serão computadas atividades realizadas antes do ingresso no curso. 
+    - Só serão registradas no histórico as horas previstas na estrutura curricular, sem registro de horas excedentes.`;
+    
+    const orientador = "Docente responsável pelo acompanhamento das Atividades Complementares (indicar nome)";
+    const cargoOrientador = "Docente responsável pelo acompanhamento das ACIs";
     const cidadeUF = "São Luís, MA";
     const ano = new Date().getFullYear().toString();
+    
+    // Valores auxiliares (para uso na lógica do sistema)
+    const horasMinModalidades = 2; // mínimo de modalidades exigidas pela Resolução (§7º e Apêndice A)
+    const vigencia = "1º semestre de 2025";
+    const localFormulario = "Central de Relacionamento do CEST";
+
 
     // ---------- MARGENS ABNT ----------
     const margemTopo = 30;
@@ -3239,8 +3054,8 @@ async function criarRelatorioCompletoABNT() {
     doc.text(nomeAluno, margemEsquerda + (larguraUtil / 2), assinaturaY + EspacamentoEntreLinhasSimples, { align: 'center' });
     doc.setFont("times", "normal");
     doc.setFontSize(12);
-    doc.text("Discente do Curso de Engenharia de Produção", margemEsquerda + (larguraUtil / 2), assinaturaY + 2 * EspacamentoEntreLinhasSimples, { align: 'center' });
-    doc.text("Universidade Estadual do Maranhão", margemEsquerda + (larguraUtil / 2), assinaturaY + 3 * EspacamentoEntreLinhasSimples, { align: 'center' });
+    doc.text("Discente do Curso de Direito Bacharelado", margemEsquerda + (larguraUtil / 2), assinaturaY + 2 * EspacamentoEntreLinhasSimples, { align: 'center' });
+    doc.text("Centro Universitário Santa Terezinha - CEST", margemEsquerda + (larguraUtil / 2), assinaturaY + 3 * EspacamentoEntreLinhasSimples, { align: 'center' });
 
     assinaturaY += 6 * EspacamentoEntreLinhas;
     doc.setLineWidth(0.3);
@@ -3251,7 +3066,7 @@ async function criarRelatorioCompletoABNT() {
     doc.setFont("times", "normal");
     doc.setFontSize(12);
     doc.text(cargoOrientador, margemEsquerda + (larguraUtil / 2), assinaturaY + 2 * EspacamentoEntreLinhasSimples, { align: 'center' });
-    doc.text("Universidade Estadual do Maranhão", margemEsquerda + (larguraUtil / 2), assinaturaY + 3 * EspacamentoEntreLinhasSimples, { align: 'center' });
+    doc.text("Centro Universitário Santa Terezinha - CEST", margemEsquerda + (larguraUtil / 2), assinaturaY + 3 * EspacamentoEntreLinhasSimples, { align: 'center' });
 
     doc.setFont("times", "normal");
     doc.setFontSize(12);
@@ -3580,7 +3395,7 @@ async function criarRelatorioCompletoABNT() {
     doc.text("5. CONSIDERAÇÕES FINAIS", margemEsquerda + (0.63 * 10), cursorY, { align: 'left' });
     cursorY += EspacamentoEntreLinhas + (4 * pts_em_mm);
 
-    const consideracoes_p1 = `O discente ${nomeAluno} concluiu a carga horária total de ${totalHorasValidadas} horas de Atividades Complementares, distribuídas em ${gruposComAtividades} grupos, conforme exigido. Todas as atividades aqui relatadas possuem documentação comprobatória válida, que é anexada a este processo para a devida análise e parecer do professor responsável, nos termos do Art. 2º do regulamento.`;
+    const consideracoes_p1 = `O discente ${nomeAluno} concluiu a carga horária total de ${totalHorasValidadas} horas de Atividades Complementares, distribuídas em ${gruposComAtividades} grupos, conforme exigido. Todas as atividades aqui relatadas possuem documentação comprobatória válida, que é anexada a este processo para a devida análise e parecer do professor responsável, nos termos do Art. 6º do regulamento.`;
 
     const consideracoes_p2 = "Espera-se, portanto, a apreciação e a homologação das horas pleiteadas para a integralização deste componente curricular obrigatório.";
 
@@ -3828,3 +3643,4 @@ function mostrarMensagemDoSistema(message, type) {
         messageContainer.remove();
     }, 5000);
 }
+
