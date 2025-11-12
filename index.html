@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <link rel="icon" href="icon-page.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SIGACC - Sistema Integrado de Gestão de Atividades Complementares Curriculares</title>
+    <title>SIGACC - Sistema de Gestão de Atividades Complementares Curriculares</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -81,14 +81,16 @@
             <a href="#" class="link-item" id="aboutLink">
                 <i class="fas fa-info-circle"></i> Sobre o sistema
             </a>
-            <a href="https://www.engproducao.uema.br/wp-content/uploads/2021/09/RESOLU%C3%87%C3%83O-DE-ATIVIDADES-COMPLEMENTARES-2021.pdf"
+            <a href="http://www.cest.edu.br/novosite2020/wp-content/uploads/2025/04/RESOLUCAO-037-2024-CEPE-ATIVIDADES-COMPLEMENTARES-INDEPENDENTES.pdf"
                 class="link-item" target="_blank">
                 <i class="fas fa-file-pdf"></i> Resolução de Atividades Complementares
             </a>
+            <!--
             <a href="https://uemabr-my.sharepoint.com/:b:/g/personal/diego_20230002200_aluno_uema_br/ESC-hsMNxUpJlNt24iiL9WgB40y1cJcQtkTxBeNbrcukbg?e=YQRqyP"
                 class="link-item" target="_blank">
                 <i class="fas fa-book-open-reader"></i> Manual do Usuário
             </a>
+            -->
         </div>
         <div class="login-footer">
             <p>SIGACC - Desenvolvido por Diego Bezerra Reinaldo © 2025</p>
@@ -103,7 +105,7 @@
                 </div>
                 <div class="user-details">
                     <h2 id="userName">Carregando...</h2>
-                    <p id="userCourse">Engenharia de Produção Bacharelado UEMA</p>
+                    <p id="userCourse">Direito Bacharelado CEST/São Luís</p>
                 </div>
             </div>
 
@@ -300,7 +302,7 @@
                     <div class="summary-label">Horas Validadas</div>
                 </div>
                 <div class="summary-item">
-                    <div class="summary-value">225</div>
+                    <div class="summary-value" id="horasNecessarias">0</div>
                     <div class="summary-label">Horas Necessárias</div>
                 </div>
             </div>
@@ -377,7 +379,7 @@
                     <div class="summary-label">Horas Validadas</div>
                 </div>
                 <div class="summary-item">
-                    <div class="summary-value">225</div>
+                    <div class="summary-value" id="horasNecessarias">0</div>
                     <div class="summary-label">Horas Necessárias</div>
                 </div>
             </div>
@@ -556,5 +558,6 @@
 </body>
 
 </html>
+
 
 
