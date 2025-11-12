@@ -1329,6 +1329,7 @@ function atualizarTabela() { // Função para atualizar a tabela de exibição d
         } else {
             document.getElementById("totalHorasRegistradas").textContent = totalHorasRegistradas;
             document.getElementById("totalHorasValidadas").textContent = totalHorasValidadas;
+            document.getElementById("horasNecessarias").textContent = horasNecessarias;
         }
     };
 
@@ -2193,6 +2194,8 @@ async function atualizarResumo() {
             document.getElementById("totalHorasRegistradas").textContent = totalHorasRegistradas;
             document.getElementById("totalHorasValidadas").textContent = totalHorasValidadas;
 
+            document.getElementById("horasNecessarias").textContent = horasNecessarias;
+
             document.getElementById("progressoTotalPercent").textContent = `${progressoTotal}%`;
             document.getElementById("progressoTotalFill").style.width = `${progressoTotal}%`;
 
@@ -2996,7 +2999,6 @@ async function criarRelatorioCompletoABNT() {
     doc.setFont("times", "normal");
     const capaLinhas = [
         instituicao.toUpperCase(),
-        centro.toUpperCase(),
         curso.toUpperCase()
     ];
 
@@ -3643,5 +3645,6 @@ function mostrarMensagemDoSistema(message, type) {
         messageContainer.remove();
     }, 5000);
 }
+
 
 
